@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { exec } from 'child_process';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -21,9 +22,14 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
-  context.subscriptions.push(vscode.commands.registerCommand('extension.getCurrentFilePath', async (uri) => {
+  context.subscriptions.push(vscode.commands.registerCommand('extension.getCurrentFilePath', (uri) => {
     vscode.window.showInformationMessage(`当前文件(夹)路径是：${uri ? uri.path : '空'}`);
-  }));
+    const contextPath = context.extensionUri.path;
+    const filePath = `${contextPath}/src/package/index.js`;
+
+    exec(`node ${filePath} --o ${uri.path}`);
+	}));
+  
 }
 
 // This method is called when your extension is deactivated
