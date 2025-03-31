@@ -16,8 +16,20 @@
       {
         "command": "swagger-api-tool.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "extension.getCurrentFilePath",
+        "title": "open Swagger-Api-Tool"
       }
-    ]
+    ],
+    "menus": {
+			"explorer/context": [
+				{
+					"command": "extension.getCurrentFilePath",
+					"group": "navigation"
+				}
+			]
+		}
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
