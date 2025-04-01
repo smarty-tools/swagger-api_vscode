@@ -3,9 +3,29 @@
 import * as vscode from 'vscode';
 import { ChildProcess, spawn } from 'child_process';
 import * as path from 'path';
+import * as fs from 'fs';
 
 let serverProcess: ChildProcess | undefined;
 let serverPort;
+
+/**
+ * 根据输入路径，查找最近文件夹路径
+ * @param filePath 路径
+ * @returns 最近上一层文件夹路径
+ */
+function getDirectoryPath (filePath: string): string {
+  const stat = fs.statSync(filePath);
+  if (stat.isFile()) {
+    const parentPath = path.resolve(filePath, '../');
+    return getDirectoryPath(parentPath);
+  }
+
+  // if (stat.isDirectory()) {
+  //   return filePath;
+  // }
+
+  return filePath;
+}
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -16,8 +36,9 @@ export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "swagger-api-tool" is now active!');
 
   context.subscriptions.push(vscode.commands.registerCommand('extension.getCurrentFilePath', (uri) => {
+    let filePath= getDirectoryPath(uri.path);
     const serverPath = path.join(context.extensionPath, 'server', 'index.js');
-    serverProcess = spawn('node', [serverPath, '--o', uri.path]);
+    serverProcess = spawn('node', [serverPath, '--o', filePath]);
 
     // // 监听服务端口号
     // serverProcess.on('message', (msg: { port: number }) => {
