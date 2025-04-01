@@ -4,8 +4,13 @@
   "description": "",
   "version": "0.0.1",
   "publisher": "hejuxin",
+  "author": "hejuxin",
   "engines": {
     "vscode": "^1.98.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smarty-tools/swagger-api_vscode.git"
   },
   "categories": [
     "Other"
@@ -20,13 +25,13 @@
       }
     ],
     "menus": {
-			"explorer/context": [
-				{
-					"command": "extension.getCurrentFilePath",
-					"group": "navigation"
-				}
-			]
-		}
+      "explorer/context": [
+        {
+          "command": "extension.getCurrentFilePath",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
