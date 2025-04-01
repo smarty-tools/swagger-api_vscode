@@ -3,6 +3,7 @@
   "displayName": "swagger-api-tool",
   "description": "",
   "version": "0.0.1",
+  "publisher": "hejuxin",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -13,10 +14,6 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "swagger-api-tool.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "extension.getCurrentFilePath",
         "title": "open Swagger-Api-Tool"
