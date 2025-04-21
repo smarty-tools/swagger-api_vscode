@@ -8,3 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 - 添加get、post请求处理
+
+## [1.0.1]
+- chore 项目结构调整及单例模式
